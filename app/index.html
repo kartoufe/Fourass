@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+	<link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="fourassApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+  <div id="idHeader">
+
+    <div class="header">
+      <div class="container" id="headerContainer">
+        <div class="row">
+          <div class="col-md-5">Logo Fourass</div>
+          <div class="col-md-7" id="panelConnexion">
+            <button type="submit" class="btn btn-primary pull-left" id="idSInscrire"> 
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+                S'inscrire
+            </button>
+            <a href="#" id="idSeConnecter"> Se connecter </a>
+            <span id="idOuVia"> ou via : </span>
+            <a id="login_google" href="#"> </a>
+            <a id="login_twitter" href="#"></a>
+            <a id="login_facebook" href="#"></a>
+          </div>
+        </div>
+      </div>
+  	</div>
+
+    <div class="header" id="filtreContainer">
+      <div class="container">
+        <div class="row" ng-controller="HeaderCtrl">
+
+            <select class="menu" name="regionDeals" id="regionDeals" 
+              ng-model="regionDeals"  
+              ng-options="region.name as region.value group by region.type for region in regions"
+              ng-change="searchAction()">
+              <option value="">Toute la Tunisie</option>
+            </select>
+
+            <select class="menu" name="categorieDeals" id="categorieDeals" 
+              ng-model="categorieDeals"  
+              ng-options="categorie.name as categorie.value group by categorie.type for categorie in categories"
+              ng-change="searchAction()">
+              <option value="">Toutes catégories</option>
+            </select>
+            
+            <form class="form-horizontal" id="form-search" role="form">
+              <div class="input-group">
+                  <input ng-model="query" type="text" class="form-control" placeholder="Que cherchez-vous?">
+                  <span class="input-group-btn">
+                    <button type="submit" id="idButtonSearch" class="btn btn-default glyphicon glyphicon-search" type="button" ng-click="searchAction()">
+                    </button>
+                  </span>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <div class="container">
+    <div ng-view="">
+    </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-heart"></span> Fourass.tn</p>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/deals.js"></script>
+        <script src="scripts/services/serviceajax.js"></script>
+        <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/controllers/search.js"></script>
+        <!-- endbuild -->
+
+  <script>
+      $(document).ready(function () {
+          $("#topbar-container").dropdown();
+      });
+      $("body").bind("click", function (e) {
+          $('.dropdown-toggle, .menu').parent("li").removeClass("open");
+      });
+      $(".dropdown-toggle, .menu").click(function (e) {
+          var $li = $(this).parent("li").toggleClass('open');
+          return false;
+      });
+  </script>
+</body>
+</html>
+
+
+
